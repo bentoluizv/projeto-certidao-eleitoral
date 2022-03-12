@@ -1,3 +1,10 @@
+def obter_eleitores():
+    base = open('data\eleitores.csv', 'r', encoding='utf8')
+    eleitores = base.readlines()
+    base.close()
+    return eleitores
+
+
 def obter_dados():
     nome = input('Digite seu nome completo : ')
     mae = input('Digite o nome da sua mãe: ')
@@ -15,8 +22,17 @@ def obter_dados():
     return dados
 
 
-def cadastrar(dados):
+def cadastrar(dados: list):
     eleitor = ';'.join(dados)
     base = open('data\eleitores.csv', 'a')
     base.write('\n' + eleitor)
     base.close()
+
+
+def buscar(nome: str, titulo: str, eleitores: list):
+    for eleitor in eleitores:
+        eleitor = eleitor.strip().split(';')
+        if (eleitor[0] == nome) and (eleitor[4] == titulo):
+            print(f'Eleitor(a): {eleitor[0]}\nMãe: {eleitor[1]}\nPai: {eleitor[2]}\nData de nascimento: {eleitor[3]}\nTitulo: {eleitor[4]}\nZona: {eleitor[5]}  Seção: {eleitor[6]}\nMunicipio: {eleitor[7]}  UF: {eleitor[8]}')
+            return
+    print('Eleitor não cadastrado')
