@@ -73,6 +73,7 @@ def emitir_certidao(nome: str, titulo: str, eleitores: list):
                 modelo = modelo.replace('$HORA$', f'{hora_atual}')
                 modelo = modelo.replace('$DATA$', f'{data_atual}')
 
-                certidao = open(f'certidao_{titulo.strip()}.html', 'w')
+                certidao = open(
+                    f'certidoes_emitidas\certidao_{titulo.strip()}.html', 'w')
                 certidao.write(modelo)
                 certidao.close()
