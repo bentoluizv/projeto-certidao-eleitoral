@@ -2,6 +2,7 @@ def obter_eleitores():
     base = open('data\eleitores.csv', 'r', encoding='utf8')
     eleitores = base.readlines()
     base.close()
+    eleitores = [eleitor.strip().split(';') for eleitor in eleitores]
     return eleitores
 
 
@@ -31,8 +32,10 @@ def cadastrar(dados: list):
 
 def buscar(nome: str, titulo: str, eleitores: list):
     for eleitor in eleitores:
-        eleitor = eleitor.strip().split(';')
         if (eleitor[0] == nome) and (eleitor[4] == titulo):
-            print(f'Eleitor(a): {eleitor[0]}\nMãe: {eleitor[1]}\nPai: {eleitor[2]}\nData de nascimento: {eleitor[3]}\nTitulo: {eleitor[4]}\nZona: {eleitor[5]}  Seção: {eleitor[6]}\nMunicipio: {eleitor[7]}  UF: {eleitor[8]}')
-            return
-    print('Eleitor não cadastrado')
+            print(f'Eleitor(a): {eleitor[0]}\nMãe: {eleitor[1]}\nPai: {eleitor[2]}\nData de nascimento: {eleitor[3]}\nTitulo: {eleitor[4]}\nZona: {eleitor[5]}  Seção: {eleitor[6]}\nMunicipio: {eleitor[7]}  UF: {eleitor[8]}\n\n')
+            return True
+    return False
+
+
+# TODO def emitir_certidao():
