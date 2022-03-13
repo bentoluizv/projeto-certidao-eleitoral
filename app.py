@@ -1,22 +1,44 @@
 from main import *
 
-eleitores = obter_eleitores()
 
-print('Digite:\n1 - Cadastrar novo eleitor\n2 - Emitir certidão de quitação eleitoral\n')
-option = int(input())
+def App():
+    eleitores = obter_eleitores()
+    option_1 = int(input(
+        'Digite:\n1 - Buscar eleitor\n2 - Cadastrar novo eleitor\n3 - Emitir certidão de quitação eleitoral\n0 - Sair\n\n'))
+    if option_1 not in [1, 2, 3, 0]:
+        print('Opção Incorreta!')
+        App()
+    elif option_1 == 0:
+        print('Fechando Aplicativo!')
+        return
+    else:
+        if option_1 == 1:
+            nome = input('Digite o nome completo: ')
+            titulo = input('Digite o número do titulo: ')
+            if buscar(nome, titulo, eleitores):
+                imprimir(nome, titulo, eleitores)
+                print('Retornando ao menu principal!')
+                App()
+            else:
+                print('Eleitor não cadastrado!')
+                App()
 
-if option not in [1, 2]:
-    print('Opção Incorreta')
-elif option == 1:
-    eleitor = obter_dados()
-    if not buscar(eleitor[0], eleitor[4], eleitores):
-        cadastrar(eleitor)
-    else:
-        print('Eleitor já cadastrado!')
-else:
-    eleitor = input('Digite seu nome completo: ')
-    titulo = input('Digite seu número de inscrição do titulo eleitoral: ')
-    if buscar(eleitor, titulo, eleitores):
-        print('Emitir certidão')
-    else:
-        print('Eleitor não cadastrado.')
+        elif option_1 == 2:
+            eleitor = obter_dados_eleitor()
+            cadastrar(eleitor)
+            print('Eleitor cadastrado com Sucesso! Retornando ao menu principal.')
+            App()
+
+        elif option_1 == 3:
+            nome = input('Digite o nome completo: ')
+            titulo = input('Digite o número do titulo: ')
+            if buscar(nome, titulo, eleitores):
+                emitir_certidao(nome, titulo, eleitores)
+                print('Certidão emitida com sucesso! retornando ao menu principal...')
+                App()
+            else:
+                print('Eleitor não cadastrado!')
+                App()
+
+
+App()
