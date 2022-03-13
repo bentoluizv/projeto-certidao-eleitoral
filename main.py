@@ -1,4 +1,5 @@
 from datetime import datetime
+from os import path, mkdir
 
 
 def obter_eleitores():
@@ -73,7 +74,11 @@ def emitir_certidao(nome: str, titulo: str, eleitores: list):
                 modelo = modelo.replace('$HORA$', f'{hora_atual}')
                 modelo = modelo.replace('$DATA$', f'{data_atual}')
 
-                certidao = open(
-                    f'certidoes_emitidas\certidao_{titulo.strip()}.html', 'w')
+                if not path.exists('certidoes_emitidas'):
+                    mkdir('certidoes_emitidas')
+
+                caminho = f'certidoes_emitidas\certidao_{titulo.strip()}.html'
+
+                certidao = open(caminho, 'w')
                 certidao.write(modelo)
                 certidao.close()
