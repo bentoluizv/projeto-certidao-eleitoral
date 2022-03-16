@@ -1,25 +1,30 @@
 from datetime import datetime
 
 
-class Eleitor:
+class Eleitor():
 
-    def __init__(self) -> None:
-        self.nome = input('Nome: ')
-        self.mae, = input('Mãe: ')
-        self.pai, = input('Pai: ')
-        self.data_nasc = input('Data de Nascimento: ')
-        self.titulo = input('Titulo Eleitoral: ')
-        self.zona = input('Zona: ')
-        self.secao = input('Seção: ')
-        self.municipio = input('Municipio: ')
-        self.uf = input('UF: ')
-        self.data_insc = input('Data de Emissão do Titulo de Eleitor: ')
-        self.votou = input('Votou na ultima eleição?\n 1 - SIM\n 0 - NÃO: ')
+    def __init__(self, nome: str, mae: str, pai: str, data_nasc: str, titulo: str, votou: str) -> None:
+        self.nome = nome
+        self.mae, = mae
+        self.pai, = pai
+        self.data_nasc = data_nasc
+        self.titulo = titulo
+        self.votou = votou
+
         self.set_info()
         self.set_idade()
         pass
 
+    def set_dados_complementares(self, zona: str, secao: str, municipio: str, uf: str, data_insc: str):
+        self.zona = zona
+        self.secao = secao
+        self.municipio = municipio
+        self.uf = uf
+        self.data_insc = data_insc
+        pass
+
     def set_info(self) -> None:
+
         self.info = [self.nome, self.mae, self.pai, self.data_nasc, self.titulo,
                      self.zona, self.secao, self.municipio, self.uf, self. data_insc, self.votou]
         pass
@@ -28,7 +33,7 @@ class Eleitor:
         return self.info
 
     def set_idade(self):
-        nasc = self.data_nasc
+        nasc = self.data_nasc[::-4]
         ano_atual = datetime.now().strftime('%Y')
         self.idade = int(ano_atual) - int(nasc)
         pass
@@ -37,7 +42,7 @@ class Eleitor:
         return self.idade
 
     def voto_obrigatorio(self):
-        pass
-
-    def set_situacao(self):
-        pass
+        idade = self.get_idade()
+        if idade >= 18 and idade < 70:
+            return True
+        return False
