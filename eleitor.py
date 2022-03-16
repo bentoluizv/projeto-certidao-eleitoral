@@ -2,22 +2,36 @@ from datetime import datetime
 
 
 class Eleitor():
+    nome = ''
+    titulo = ''
+    data_nasc = ''
+    mae = ''
+    pai = ''
+    zona = ''
+    secao = ''
+    municipio = ''
+    uf = ''
+    data_insc = ''
+    votou = ''
 
-    def __init__(self, nome: str, mae: str, pai: str, data_nasc: str, titulo: str, votou: str, zona: str, secao: str, municipio: str, uf: str, data_insc: str) -> None:
+    def __init__(self, nome: str, titulo: str, data_nasc: str) -> None:
         self.nome = nome
-        self.mae, = mae
-        self.pai, = pai
-        self.data_nasc = data_nasc
         self.titulo = titulo
-        self.zona = zona
-        self.secao = secao
-        self.municipio = municipio
-        self.uf = uf
-        self.data_insc = data_insc
-        self.votou = votou
+        self.data_nasc = data_nasc
 
         self.set_info()
         self.set_idade()
+        pass
+
+    def set_data(self):
+        self.mae, = input('Mãe: ')
+        self.pai, = input('Pai: ')
+        self.zona = input('Zona Eleitoral: ')
+        self.secao = input('Seção Eleitoral: ')
+        self.municipio = input('Municipio: ')
+        self.uf = input('UF: ')
+        self.data_insc = ('Data de Emissão do Titulo de Eleitor: ')
+        self.votou = ('Votou na ultima eleição: \n  1 - SIM\n  0 - NÃO\n\n')
         pass
 
     def set_info(self) -> None:
@@ -30,7 +44,7 @@ class Eleitor():
         return self.info
 
     def set_idade(self):
-        nasc = self.data_nasc[::-4]
+        nasc = self.data_nasc[-4::]
         ano_atual = datetime.now().strftime('%Y')
         self.idade = int(ano_atual) - int(nasc)
         pass
