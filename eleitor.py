@@ -3,24 +3,21 @@ from datetime import datetime
 
 class Eleitor():
 
-    def __init__(self, nome: str, mae: str, pai: str, data_nasc: str, titulo: str, votou: str) -> None:
+    def __init__(self, nome: str, mae: str, pai: str, data_nasc: str, titulo: str, votou: str, zona: str, secao: str, municipio: str, uf: str, data_insc: str) -> None:
         self.nome = nome
         self.mae, = mae
         self.pai, = pai
         self.data_nasc = data_nasc
         self.titulo = titulo
-        self.votou = votou
-
-        self.set_info()
-        self.set_idade()
-        pass
-
-    def set_dados_complementares(self, zona: str, secao: str, municipio: str, uf: str, data_insc: str):
         self.zona = zona
         self.secao = secao
         self.municipio = municipio
         self.uf = uf
         self.data_insc = data_insc
+        self.votou = votou
+
+        self.set_info()
+        self.set_idade()
         pass
 
     def set_info(self) -> None:
