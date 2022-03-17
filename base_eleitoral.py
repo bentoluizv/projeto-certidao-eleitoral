@@ -30,9 +30,8 @@ class Base():
 
     def imprimir(self, nome: str, titulo: str):
         eleitor = self.buscar(nome, titulo)
-        conteudo = f'Eleitor(a): {eleitor[0]}\nMãe: {eleitor[1]}\nPai: {eleitor[2]}\nData de nascimento: {eleitor[3]}\nTitulo: {eleitor[4]}\nZona: {eleitor[5]}  Seção: {eleitor[6]}\nMunicipio: {eleitor[7]}  UF: {eleitor[8]}\n\n'
+        conteudo = f'\nEleitor(a): {eleitor.nome}\nMãe: {eleitor.mae}\nPai: {eleitor.pai}\nData de nascimento: {eleitor.data_nasc}\nTitulo: {eleitor.titulo}\nZona: {eleitor.zona}  Seção: {eleitor.secao}\nMunicipio: {eleitor.municipio}  UF: {eleitor.uf}\nIdade: {eleitor.idade} anos\nSituação Eleitoral: {eleitor.situacao}\n'
         if eleitor:
-            eleitor = eleitor.get_info()
             return conteudo
         else:
             return ''
