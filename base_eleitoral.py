@@ -70,7 +70,3 @@ class Base():
         certidao.close()
 
         return True
-
-
-base = Base()
-base.emitir_certidao('Bento Luiz', '123456789')
