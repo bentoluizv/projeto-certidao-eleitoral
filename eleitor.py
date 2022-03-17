@@ -1,5 +1,4 @@
 from datetime import datetime
-from re import M
 
 
 class Eleitor():
@@ -21,11 +20,19 @@ class Eleitor():
     def __init__(self, dados: list[str]) -> None:
         [self.nome, self.mae, self.pai, self.data_nasc, self.titulo, self.zona,
             self.secao, self.municipio, self.uf, self.data_insc, self.votou] = dados
-        self.set_idade()
         self.set_info()
+        self.set_idade()
         self.set_situacao()
 
         pass
+
+    def set_info(self):
+        self.info = [self.nome, self.mae, self.pai, self.data_nasc, self.titulo, self.zona,
+                     self.secao, self.municipio, self.uf, self.data_insc, self.votou]
+        pass
+
+    def get_info(self):
+        return self.info
 
     def set_idade(self):
         ano_nasc = int(self.data_nasc[-4::])
@@ -48,14 +55,6 @@ class Eleitor():
 
     def get_idade(self):
         return self.idade
-
-    def set_info(self):
-        self.info = [self.nome, self.mae, self.pai, self.data_nasc, self.titulo, self.zona,
-                     self.secao, self.municipio, self.uf, self.data_insc, self.votou]
-        pass
-
-    def get_info(self):
-        return self.info
 
     def set_situacao(self):
         idade = self.get_idade()
