@@ -26,11 +26,11 @@ class Base():
                 eleitor = Eleitor(el)
         return eleitor
 
-    def imprimir(self, nome, titulo):
+    def imprimir(self, nome: str, titulo: str):
         eleitor = self.buscar(nome, titulo)
-
+        conteudo = f'Eleitor(a): {eleitor[0]}\nMãe: {eleitor[1]}\nPai: {eleitor[2]}\nData de nascimento: {eleitor[3]}\nTitulo: {eleitor[4]}\nZona: {eleitor[5]}  Seção: {eleitor[6]}\nMunicipio: {eleitor[7]}  UF: {eleitor[8]}\n\n'
         if eleitor:
             eleitor = eleitor.get_info()
-            print(f'Eleitor(a): {eleitor[0]}\nMãe: {eleitor[1]}\nPai: {eleitor[2]}\nData de nascimento: {eleitor[3]}\nTitulo: {eleitor[4]}\nZona: {eleitor[5]}  Seção: {eleitor[6]}\nMunicipio: {eleitor[7]}  UF: {eleitor[8]}\n\n')
+            return conteudo
         else:
-            print('Eleitor Não Cadastrado!')
+            return ''
